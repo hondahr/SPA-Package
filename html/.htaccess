@@ -1,0 +1,15 @@
+php_flag display_errors off
+DirectoryIndex index.php
+Options +FollowSymLinks
+Options -Indexes
+RewriteEngine On
+
+
+AddType x-application-php .php5
+
+
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule (.*)$ index.php?request=$1 [L,QSA]
+

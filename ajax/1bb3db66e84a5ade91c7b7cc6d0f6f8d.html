@@ -1,0 +1,95 @@
+<?php
+  include 'ajax.php';
+
+/**
+ * SocketLabs HTTP injection API sample for merging messages
+ * 
+ * Script: sendPO
+**/
+header('Content-Type: application/json');
+
+$order = getVendor($_POST['loc']);
+$order['email'] = 'rwhitney@phpmydev.com';// comment when live
+$ord = explode(',',$order['email']);
+$product = explode(',',$_POST['product']);
+$comments = $_POST['comments'];
+$shipto = $_POST['shipto'];
+foreach($product as $p => $v){//product should always be an array, regardless of how many there are
+  $products .= "$v<br/>";
+}
+
+$vendor = $order['vendor'];
+$merge_data = new stdClass();
+$email = array();
+for($i=0;$i<count($ord);$i++){
+  $email = array_merge($email,array(//send an email to each address in the db for this record
+      array(
+        array('Field'=>'DeliveryAddress', 'Value'=>$ord[$i]),
+        array('Field'=>'Products', 'Value'=>$products),
+        array('Field'=>'Vendor', 'Value'=>$vendor.' '.$_POST['loc']),
+        array('Field'=>'ProductComments', 'Value'=>$productcomments),
+        array('Field'=>'Comments', 'Value'=>$comments),
+        array('Field'=>'ShipTo', 'Value'=>strtoupper($shipto))
+      )
+    )
+  );
+}
+  $merge_data->PerMessage = $email;
+
+  //build merge data
+  //~ $merge = array_merge($merge_data,$email);
+
+//~ pr($merge_data);
+
+  // Create JSON object to POST to SocketLabs
+  $data = new stdClass();
+  $data->ServerId=SOCKETLABS_SERVERID;
+  $data->ApiKey=SOCKETLABS_KEY;
+  $data->Messages= array(array('MergeData'=>$merge_data,
+                          'Subject'=>'Purchase Order From AFS',
+                          'To'=>array(array('EmailAddress'=>'%%DeliveryAddress%%')),
+                          'From'=>array('EmailAddress'=>$administrator),
+                          'HtmlBody'=>'<h1>Purchase Order</h1><table width=600>
+                                        <tr><td colspan="3">
+                                          <b>Affordable Funeral Supply</b><br/>
+                                            128 BRICKYARD RD<br/>
+                                            Mars, PA  16046<br/>
+                                            US<br/>
+                                            sales@affordablefuneralsupply.com
+                                          </td>
+                                        </tr>
+                                        <tr><td><h3>VENDOR:</h3>%%Vendor%%<br />%%Comments%%</td><td>%%ShipTo%% </td></tr>
+                                        <tr><td colspan="3"><h3>Products Ordered</h3></td></tr>
+                                        <tr><td colspan="3">%%Products%%</td></tr>
+                                        
+                                      
+                                      </td></tr></table>'
+                        ));
+  $bodyJson = json_encode($data);
+
+
+  //use CURL to POST the JSON to SocketLabs
+  $ch = curl_init();
+  curl_setopt($ch, CURLOPT_URL,SOCKETLABS_URL);
+  curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1 );
+  curl_setopt($ch, CURLOPT_POST,           1 );
+  curl_setopt($ch, CURLOPT_POSTFIELDS,     $bodyJson );
+  curl_setopt($ch, CURLOPT_HTTPHEADER,     array('Content-Type: application/json'));
+  
+  $result=curl_exec ($ch);
+  curl_close ($ch);
+
+  //process result
+  if ($result==false) {
+    echo 'HTTP Error';
+  } else {
+      $result_obj = json_decode($result);
+      if ($result_obj->ErrorCode=='Success') {
+         echo 'Successfully sent all messages.';
+      } elseif ($result_obj->ErrorCode=='Warning') {
+         echo 'At least one message was sent, but there are errors with one or more messages, or their recipients.';
+         //not shown here, but you can traverse the MessageResults object to get more information on each message that encountered an error or warning
+      } else {
+         echo 'Failure Code: ' . $result_obj->ErrorCode;
+      }
+  }

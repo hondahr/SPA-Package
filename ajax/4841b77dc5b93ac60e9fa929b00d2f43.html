@@ -1,0 +1,52 @@
+<?php
+
+
+
+    include_once '../includes/RocketShipIt/autoload.php';
+    $rate = new \RocketShipIt\Rate('fedex');
+    $rate->setParameter('shipCode', $_POST['senderzip']);
+    $rate->setParameter('toCode', $_POST['recipientzip']);
+    $dimsloc = $_POST['dimsloc'];
+    //~ pr($dimsloc);
+    $dimensions = '';
+
+    //~ $numitems = count($dimsloc);
+    $package = new \RocketShipIt\Package('fedex');
+    
+    for($i=0;$i<count($dimsloc);$i++){
+      $ex = explode('_',$dimsloc[$i]);
+      $loc = $ex[0];
+      $l = $ex[1];
+      $w = $ex[2];
+      $h = $ex[3];
+      $wt = $ex[4];
+      //~ $dimensions = $ex[1]+$ex[2]+$ex[3];
+      
+      $package->setParameter('length', $l);
+      $package->setParameter('width', $w);
+      $package->setParameter('height', $h);
+      $package->setParameter('weight', $wt);
+      
+      if($wt > 150){
+        $rate->setParameter('service', 'FEDEX_FREIGHT_ECONOMY');      
+        $rate->setParameter('freightAccountNumber','527383927');      
+        $rate->setParameter('freightClass', 'CLASS_100');
+        $rate->setParameter('shipAddr1', '178 TRUVER RD');//do not change these values!!!      
+        $rate->setParameter('shipCity', 'VALENCIA');      
+        $rate->setParameter('shipState', 'PA');      
+        $rate->setParameter('shipCode', '16059');
+              
+      }
+      $rate->setParameter('residentialAddressIndicator', '0');
+      $rate->addPackageToShipment($package);
+    }
+    $response = $rate->getRate();
+    //~ echo $rate->debug();
+    pr($response);
+    if($_POST['weight'] <= 150){
+      echo $response[RateReply][RateReplyDetails][6][RatedShipmentDetails][0][ShipmentRateDetail][TotalNetFedExCharge][Amount];
+    } else {
+      echo $response[RateReply][RateReplyDetails][RatedShipmentDetails][1][ShipmentRateDetail][TotalNetCharge][Amount];
+                    
+    }
+    //~ echo ($response[RateReply][RateReplyDetails][RatedShipmentDetails][0][ShipmentRateDetail][TotalNetFedExCharge][Amount]);

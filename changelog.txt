@@ -1,0 +1,5 @@
+New in version 1.1  Release Date November 19, 2016
+
+-- added FontAwesome css file
+-- removed buggy click area after left menu items which made the page contents disappear
+-- added sticky ColorPicker with input for color and copy button on Admin Stylesheet

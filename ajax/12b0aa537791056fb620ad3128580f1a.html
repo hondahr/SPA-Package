@@ -1,0 +1,6 @@
+<?php
+  include 'ajax.php';
+  if($_POST['email'] === $administrator){
+    $login = initializeAdmin();
+    echo $login;
+  }
