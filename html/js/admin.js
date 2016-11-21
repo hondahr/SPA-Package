@@ -46,7 +46,7 @@
       data:{}
     }).success(function(response){
       //~ console.log(response);
-      var css = '<h3>Editing custom.css</h3><button id="edit-css">Save Changes</button><span id="color-holder"><input id="color-picker" placeholder="Color Picker"><button id="copyColor">Copy Color</button></span><br/><textarea id="css" cols=60 rows=30>'+response+'</textarea>';
+      var css = '<h3>Editing custom.css</h3><span id="color-holder"><button id="edit-css">Save Changes</button><input id="color-picker" placeholder="Color Picker"><button id="copyColor">Copy Color</button></span><br/><textarea id="css" cols=60 rows=30>'+response+'</textarea>';
       $('#content').html(css).show();
       var editor = CodeMirror.fromTextArea(document.getElementById("css"), {
         lineNumbers: true,
