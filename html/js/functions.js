@@ -73,6 +73,7 @@ function loadPage($data){
       page:$data
     }
   }).success(function(response){
+    ga('send', 'pageview');
     //~ alert(response);
     //~ console.log(response);
     if(response === null){//possible details page
@@ -137,53 +138,6 @@ function loadPage($data){
     });
     
     
-  });
-}
-
-function results(data){
-  var final = data.split('_');// split the uri created by popstate() and served by loadPage()
-  var url = '';// initialize url
-  if(final[1] !== fub(final[1])){// menu item from left nav clicked
-    page = final[1];
-  } else {
-    page = final[0];
-    //~ uri = final[0];//running into a situation where final[0] is featured-products, yet the actual featured product is in another category
-  }//it looks like featured items are added to the database in addition to their normal listing - afs specific
-  // we do not show results when final[2] is present, we show details
-  $.ajax({
-    url:'/ajax/results',
-    type:'post',
-    dataType:'json',
-    data:{
-      page:page
-    }
-  }).success(function(response){
-    $results = '';//initialize $results
-    var num = response[0].num;// for displaying num items in results
-    var name = '';//initialize name
-    $results = '<div class="num">'+num+' Items</div>';// start to populate $results
-    var link = '';//initialize link
-    $.each(response,function(i,item){
-      uri = item.CategoryURL+'_'+item.SubcategoryURL;
-      url = item.CategoryURL+'/'+item.SubcategoryURL;
-
-      if(item.Name === null){
-        name1 = item.Description;
-        name1 = name.replace(/<p>&nbsp;<\/p>/g,'');
-      } else {
-        name1 = '<p><b><u>'+item.Name+'</u></b></p>';
-      }
-      link = '<a class="more-details product" id="details_'+uri+'_'+item.URL+'" href="/'+url+'/'+item.URL+'">';
-      $results += '<div class="results col-md-12 col-sm-12 col-lg-12 col-xs-12"><div class="col-md-3 col-sm-3 col-lg-5 col-xs-12">'+link+'<img src="/images/products/150x150/'+item.image+'.jpg"></a></div><div class="col-md-4 col-sm-4 col-lg-5 col-xs-12">'+link+name1+'</a><span class="green price"><b>Our Price:</b> $'+number_format(item.SalePrice,2,'.',',')+'</span></div><div class="col-md-3 col-sm-3 col-xs-12 col-lg-2">'+link+'<button>More Details</button></a></div></div>';
-    });
-    if(num > 0){
-      $('#results').html($results).fadeIn();
-    }
-    $('a.product').on("click", function(evt) {
-      evt.preventDefault();
-      //~ console.log('%c SPA Product Navigation','color:green;');
-    });
-
   });
 }
 

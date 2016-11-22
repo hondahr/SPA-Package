@@ -61,7 +61,6 @@ $(document).on('click','a.menu',function(evt){
   }
   history.pushState({page:href}, '', href);
   loadPage(dhref);
-  results(dhref);
 });
 
 $('#content').on('click','#submit-request',function(){
