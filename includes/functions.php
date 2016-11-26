@@ -26,6 +26,8 @@ function loadPagePHP($page){
   return false;
 }
 
+function results(){}
+
 function topNav(){
   $nav = '';
   $sql = "SELECT * FROM topnav WHERE active = 1 AND parent = 0 ORDER BY displayorder";

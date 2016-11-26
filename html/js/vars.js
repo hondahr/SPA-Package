@@ -26,3 +26,14 @@ var enableDate = true;//change to anything besides true to disable;
 
 var salt = '';
 
+var bg = [];
+bg.push('Christmas.png');
+bg.push('Christmas-2.png');
+bg.push('Christmas-3.png');
+bg.push('Christmas-4.png');
+bg.push('Christmas-5.png');
+bg.push('Christmas-6.png');
+bg.push('Christmas-7.png');
+bg.push('Christmas-8.png');
+bg.push('Christmas-9.png');
+bg.push('Christmas-10.png');

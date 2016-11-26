@@ -1,3 +1,16 @@
+$(document).ready(function(){
+  setInterval(function(){
+    var len = bg.length;
+    var i = rand(0,len-1);
+      $('body').css({
+        backgroundImage:'url(/images/'+bg[i]+')',
+        transition:'1s'
+      });
+  },rand(1000,15000));
+});
+
+
+
 $('#content').on('mouseenter','.form-wrapper',function(){
   $(this).children('input,label,select,textarea').css({'display':'block'}).focus();
   $(this).children('.label').hide();

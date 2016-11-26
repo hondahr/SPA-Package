@@ -327,9 +327,19 @@ footer {
 }
 
 #left-nav {
+    display: block;
+    position:relative;
+    height:auto;
+    bottom:0;
+    top:0;
+    left:0;
+    right:0;
+
+}
+
+#content {
   padding:0 0 50px;
   min-height:800px;
-  height:100%;
 }
 
 #left-nav ul {

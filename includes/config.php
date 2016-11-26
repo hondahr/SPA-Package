@@ -30,7 +30,6 @@ $upload_path = $_SERVER['DOCUMENT_ROOT']."/images";//no trailing slash
  * Server specific parameters
  * ###############################*/
 if(dev() === true){// development
-  $incpath = '/home/htdocs/spapackage/includes';
   /* Development Database Connection info */
   $host = "192.168.3.1";
   $user = "root";
@@ -38,7 +37,6 @@ if(dev() === true){// development
   $db   = "spapkg";
 } else {// production
   /* Production Database Connection info and Path*/
-  $incpath = '/path/to/includes';//no trailing slash
   /* Define db vars */
   $host = "localhost";
   $user = "";
@@ -46,6 +44,7 @@ if(dev() === true){// development
   $db   = "dbname";
   /* end define db vars */
 }
+$incpath = realpath(dirname(__FILE__));
 
 /* Define these vars */
 $title = 'Main title of your website';// gets overwritten by your pages

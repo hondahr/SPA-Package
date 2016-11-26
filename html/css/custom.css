@@ -120,8 +120,8 @@ h1,h2,h3,h4 {
   border-radius:0 0 5px 5px
 }
 
-#left-nav {
-  border-right:5px solid #1C1B2F
+#content {
+  border-left:5px solid #1C1B2F
 }
 
 #left-nav li {
