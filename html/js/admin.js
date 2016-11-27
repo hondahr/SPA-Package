@@ -23,7 +23,8 @@
         '<br />'+
         '<button id="add-edit-page">Finish and Add/Edit Page</button><button id="cancel-page">Cancel Page Add/Edit</button></div>'+
       '</div></div>';
-
+  
+  var bgImgs = '<div class="col-md-12"><input type="file" id="inv-upload" name="inv-upload" data-url="/ajax/uploadBG"><br/><span id="img-holder"></span>';
 
   var adminNav = '<a id="admin-dd" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Admin <span class="caret"></span></a>'+
                     '<ul class="dropdown-menu">'+
@@ -32,12 +33,18 @@
                       '<a id="admin-leftnav" class="admin-link">Admin Left Nav</a>'+
                       '<a id="admin-index" class="admin-link">Admin index.html</a>'+
                       '<a id="admin-stylesheet" class="admin-link">Admin Stylesheet</a>'+
+                      '<a id="admin-bg-images" class="admin-link">Admin Backgrounds</a>'+
                       '<a id="edit-page" class="admin-add-edit-page-link admin-link">Edit This Page</a>'+
                       '<a class="logout admin-link">Log Out</a></li>'+
                     '</ul>'+
                  '</li>';
 
   $('#admin-nav').html(adminNav);
+  
+  $('#admin-bg-images').on('click',function(){  
+    $('#content').html(bgImgs);
+    upload('backgrounds');
+  });
   
   $('#admin-stylesheet').on('click',function(){
     $.ajax({
@@ -312,7 +319,7 @@
     $('.add-pages').show();
 
     $('#admin').html(adminPage).show();
-upload();
+    upload('images');
     $('#results').hide();
     $('#main').hide();
     //~ buttonReload();
@@ -414,7 +421,7 @@ upload();
     ed.dom.setAttrib(ifr, 'title', '');// set the popup title to blank
   }
   
-  function upload(){
+  function upload(folder){
     $('#inv-upload').on('click',function(){
       //~ alert('file');
       $('#inv-upload').fileupload({
@@ -426,13 +433,12 @@ upload();
         },
         done: function (e, data) {
           console.log(e);
-          $('#img-holder').html('<img src="/images/'+data.result+'" width=100><br /><input id="copyTarget" value="/images/'+data.result+'"> <button id="copyButton">Copy</button><span id="msg"></span><br>');
+          $('#img-holder').html('<img src="/'+folder+'/'+data.result+'" width=100><br /><input id="copyTarget" value="/'+folder+'/'+data.result+'"> <button id="copyButton">Copy</button><span id="msg"></span><br>');
           $("#copyButton").on("click", function() {
             copyToClipboardMsg(document.getElementById("copyTarget"), "msg");
           });
         }
       });
-        
     });
   }
 })();

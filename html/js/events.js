@@ -1,12 +1,19 @@
 $(document).ready(function(){
-  setInterval(function(){
-    var len = bg.length;
-    var i = rand(0,len-1);
-      $('body').css({
-        backgroundImage:'url(/images/'+bg[i]+')',
-        transition:'1s'
-      });
-  },rand(1000,15000));
+  $.ajax({
+    url:'/ajax/getBackgrounds',
+    type:'post',
+    dataType:'json',
+    data:{}
+  }).success(function(bg){
+    setInterval(function(){
+      var len = bg.length;
+      var i = rand(0,len-1);
+        $('body').css({
+          backgroundImage:'url(/backgrounds/'+bg[i]+')',
+          transition:'2s'
+        });
+    },rand(9000,15000));
+  });
 });
 
 

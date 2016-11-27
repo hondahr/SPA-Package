@@ -268,6 +268,15 @@ function upload(){
   return $file;
 }
 
+function uploadBG(){
+  global $upload_path;
+
+  move_uploaded_file($_FILES["inv-upload"]["tmp_name"],$_SERVER['DOCUMENT_ROOT'].'/backgrounds/'.$_FILES["inv-upload"]["name"]);
+
+    $file = $_FILES["inv-upload"]["name"];
+  return $file;
+}
+
 function sendRequest(){
   global $administrator;
   if(validEmail($_POST['email']) === true){
@@ -389,3 +398,18 @@ function saveIndex(){
     fclose($handle);
   }
 }
+//~ getBackgrounds();exit;
+function getBackgrounds(){
+  $dir = $_SERVER['DOCUMENT_ROOT'].'/backgrounds';
+  if ($handle = opendir($dir)) {
+    while (false !== ($entry = readdir($handle))) {
+      if($entry !== '.' && $entry !== '..'){
+        $arr[] = $entry;
+      }
+    }
+    closedir($handle);
+    return json_encode($arr);
+    //~ return $arr;
+  }
+}
+
