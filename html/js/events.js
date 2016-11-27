@@ -1,4 +1,4 @@
-$(document).ready(function(){
+if(enableBackgrounds === true){
   $.ajax({
     url:'/ajax/getBackgrounds',
     type:'post',
@@ -14,7 +14,7 @@ $(document).ready(function(){
         });
     },rand(9000,15000));
   });
-});
+}
 
 
 

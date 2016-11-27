@@ -23,6 +23,6 @@ var options = {
 date = date.toLocaleTimeString("en-us", options);
 
 var enableDate = true;//change to anything besides true to disable;
-
+var enableBackgrounds = true;//change to anything besides true to disable;
 var salt = '';
 

@@ -398,7 +398,26 @@ function saveIndex(){
     fclose($handle);
   }
 }
-//~ getBackgrounds();exit;
+
+function getVars(){
+  $file = $_SERVER['DOCUMENT_ROOT'].'/js/vars.js';
+  if(is_writable($file)){
+    $handle = fopen($file,'r');
+    $index = fread($handle, filesize($file));
+    fclose($handle);
+    return $index;
+  }
+}
+
+function saveVars(){
+  $file = $_SERVER['DOCUMENT_ROOT'].'/js/vars.js';
+  if(is_writable($file)){
+    $handle = fopen($file,'w');
+    fwrite($handle,stripslashes($_POST['vars']));
+    fclose($handle);
+  }
+}
+
 function getBackgrounds(){
   $dir = $_SERVER['DOCUMENT_ROOT'].'/backgrounds';
   if ($handle = opendir($dir)) {

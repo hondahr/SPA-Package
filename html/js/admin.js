@@ -33,6 +33,7 @@
                       '<a id="admin-leftnav" class="admin-link">Admin Left Nav</a>'+
                       '<a id="admin-index" class="admin-link">Admin index.html</a>'+
                       '<a id="admin-stylesheet" class="admin-link">Admin Stylesheet</a>'+
+                      '<a id="admin-vars" class="admin-link">Admin vars.js</a>'+
                       '<a id="admin-bg-images" class="admin-link">Admin Backgrounds</a>'+
                       '<a id="edit-page" class="admin-add-edit-page-link admin-link">Edit This Page</a>'+
                       '<a class="logout admin-link">Log Out</a></li>'+
@@ -133,6 +134,37 @@
           //~ alert(response);
           success('index.html updated successfully');
           $('#admin-index').trigger('click');
+        });
+      });
+    });
+  });
+  
+  $('#admin-vars').on('click',function(){
+    $.ajax({
+      url:'/ajax/getVars',
+      type:'post',
+      data:{}
+    }).success(function(response){
+      console.log(response);
+      var css = '<h3>Editing vars.js</h3><button id="edit-vars">Save Changes</button><br/><textarea id="vars" cols=90 rows=30>'+response+'</textarea>';
+      $('#content').html(css).show();
+      var editor = CodeMirror.fromTextArea(document.getElementById("vars"), {
+        lineNumbers: true,
+        mode: "text/javascript",
+        matchBrackets: true
+      });
+      $('#edit-vars').on('click',function(){
+        var vars = editor.getValue();
+        $.ajax({
+          url:'/ajax/saveVars',
+          type:'post',
+          data:{
+            vars:vars
+          }
+        }).success(function(response){
+          //~ alert(response);
+          success('vars.js updated successfully');
+          $('#admin-vars').trigger('click');
         });
       });
     });
