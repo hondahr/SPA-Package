@@ -5,7 +5,6 @@ date_default_timezone_set("America/Phoenix");
 /*
  * Functions needed within this config file
  * */
-//~ echo md5('sendRequest');exit;
 
 function dev(){
   if(strstr($_SERVER['HTTP_HOST'],"192.168.6")){
@@ -50,7 +49,7 @@ $incpath = realpath(dirname(__FILE__));
 $title = 'Main title of your website';// gets overwritten by your pages
 $sitename = 'Your Site';
 $administrator = 'user@example.com';// owners email address
-$googleAnalyticsID = '';
+$googleAnalyticsID = 'UA-xxxxxx-1';
 /*  end define these vars */
 
 
