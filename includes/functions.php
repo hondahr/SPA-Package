@@ -278,7 +278,7 @@ function uploadBG(){
 }
 
 function sendRequest(){
-  global $administrator;
+  global $administrator,$sitename;
   if(validEmail($_POST['email']) === true){
     //~ proceed with the send
     $msg = '';
@@ -429,6 +429,13 @@ function getBackgrounds(){
     closedir($handle);
     return json_encode($arr);
     //~ return $arr;
+  }
+}
+
+function deleteBackground(){
+  $file = $_SERVER['DOCUMENT_ROOT'].'/backgrounds/'.$_POST['bg'];
+  if(is_file($file)){
+    unlink($file);
   }
 }
 

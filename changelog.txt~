@@ -11,4 +11,3 @@ New in version 1.1e Release Date November 29, 2016
 -- fixed ajax files to point to functions.php when sending requests from website
 -- added disqusurl = '' to vars.js in case you set up disqus on your site
 -- added support for editing with single quotes in the text
--- expunged unnecessary files from ajax folder

@@ -26,7 +26,7 @@
         //~ $input = addslashes($input);
         $input = mysqli_real_escape_string( $init,$input );
         mysqli_close($init);
-        return stripslashes($input);
+        return stripslashes(addslashes($input));
     }
 
     function rows($sql){

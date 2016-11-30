@@ -64,6 +64,32 @@ function popstate(){
   });
 }
 
+function disqus(page){
+  if(disqusurl !== ''){
+    if(localStorage.getItem('admin') === fub(localStorage.getItem('admin'))){
+      var disqus_config = function () {
+        this.page.url = page;  
+        this.page.identifier = page; 
+      };
+      (function() { // DON'T EDIT BELOW THIS LINE
+        var d = document, s = d.createElement('script');
+        s.src = '//'+disqusurl+'.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+      })();
+    }
+  }
+}
+
+function play(){
+    var audioElement = document.createElement('audio');
+    audioElement.setAttribute('src', '/audio/click.mp3');
+    
+    $('#clickmp3').click(function() {
+        audioElement.play();
+    });
+}
+
 function loadPage($data){
   $.ajax({
     url:'/ajax/loadPage',
@@ -75,6 +101,9 @@ function loadPage($data){
   }).success(function(response){
     $slashdata = $data.replace(/_/g,'/');
     ga('send', 'pageview','/'+$slashdata);
+    
+    disqus($slashdata);
+    
     //~ alert(response);
     //~ console.log(response);
     if(response === null){//possible details page
@@ -88,12 +117,7 @@ function loadPage($data){
     }
 
     $('#search-results').empty();
-    if($data === 'cart'){
-      $('#results').hide();
-      if(w < 769){
-        $('#left-nav').hide();
-      }
-    } else if($data === ''){
+    if($data === ''){
       $('head').find('title').text(response.title);
       heading = '<div class="page-header"><h1>'+response.heading+'</h1></div>';
 

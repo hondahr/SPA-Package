@@ -43,9 +43,41 @@
   $('#admin-nav').html(adminNav);
   
   $('#admin-bg-images').on('click',function(){  
-    $('#content').html(bgImgs);
-    upload('backgrounds');
+    //~ $('#content').html(bgImgs);
+    
+    $.ajax({
+      url:'/ajax/getBackgrounds',
+      type:'post',
+      dataType:'json',
+      data:{}
+    }).success(function(bg){
+      console.log(bg);
+      var bgs = '';
+      $.each(bg,function(i,item){
+        bgs += '<img title="Click to delete this image" data-img="'+item+'" class="delete-bg-img" src="/backgrounds/'+item+'" width=100 height=60>';
+      });
+      $('#content').html(bgImgs+bgs);
+      upload('backgrounds');
+    });
   });
+  deleteBgImgs();
+  function deleteBgImgs(){
+    $('#content').on('click','.delete-bg-img',function(){
+      var img = $(this).data('img');
+      if(confirm('Are you sure you want to delete '+img+'?')){
+        $.ajax({
+          url:'/ajax/deleteBackground',
+          type:'post',
+          data:{
+            bg:img
+          }
+        }).complete(function(){
+          $('#content').empty();
+          $('#admin-bg-images').trigger('click');
+        });
+      }
+    });
+  }
   
   $('#admin-stylesheet').on('click',function(){
     $.ajax({
@@ -464,11 +496,14 @@
 
         },
         done: function (e, data) {
-          console.log(e);
           $('#img-holder').html('<img src="/'+folder+'/'+data.result+'" width=100><br /><input id="copyTarget" value="/'+folder+'/'+data.result+'"> <button id="copyButton">Copy</button><span id="msg"></span><br>');
-          $("#copyButton").on("click", function() {
-            copyToClipboardMsg(document.getElementById("copyTarget"), "msg");
-          });
+          if(folder === 'backgrounds'){
+            $('#admin-bg-images').trigger('click');
+          } else {
+            $("#copyButton").on("click", function() {
+              copyToClipboardMsg(document.getElementById("copyTarget"), "msg");
+            });
+          }
         }
       });
     });

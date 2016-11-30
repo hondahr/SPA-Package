@@ -15,7 +15,7 @@ p {
 
 #div {border-top:1px solid red}
 
-#-div,#SilkCordNecklaces-div,p {
+#-div {
   width:800px
 }
 
@@ -360,9 +360,7 @@ footer {
 }
 
 div .submenu {
-/*
 	display: none;
-*/
 	font-size:10pt;
   list-style:none
 }
@@ -392,10 +390,6 @@ div .submenu {
   margin-left:30px;
   margin-bottom:100px;
   padding:0
-}
-
-#SilkCordNecklaces.container.body {
-  max-width:800px
 }
 
 #content p {
@@ -566,11 +560,8 @@ button {
   .page-header {
     width:640px;
   }
-  #-div,#SilkCordNecklaces-div,p {
+  #-div {
   	width:640px;
-  }
-  #SilkCordNecklaces.container.body {
-    max-width:640px
   }
   #content,.col-md-12 {
     display:block;
@@ -609,9 +600,6 @@ button {
     float:right;
     width:768px;
   }
-  #SilkCordNecklaces.container.body {
-    max-width:768px
-  }
   .page-header {
     width:700px
   }
@@ -643,7 +631,7 @@ button {
   #footer-text-links li a {
     font-size:20px
   }
-  .img-responsive,#jumbo,#content.body,#-div,#SilkCordNecklaces-div,p {
+  .img-responsive,#jumbo,#content.body,#-div {
     max-width:640px !important;
   }
    
@@ -653,8 +641,7 @@ button {
   
   #left-nav {
     min-height:100px;
-    border-right:none;
-    max-width:700px
+    border-right:none
   }
 
   li.other a,li.first a {
@@ -682,7 +669,10 @@ button {
   #main,#shadow,#inside-shadow  {
     width:100%;
   }
-  
+
+  #left-nav {
+    width:700px
+  }
   #search,#tabs {
     position:relative;
     top:0;
@@ -765,9 +755,6 @@ button {
   #tabs,#products-header,#left-nav {
     width:640px;
   }
-  #SilkCordNecklaces.container.body {
-    max-width:640px
-  }
   pre,#content ul li,#content ol li {
     max-width:450px !important;
   }
@@ -789,9 +776,7 @@ button {
     width:410px !important;
     height:200px
   }
-  .container.body {
-    width:400px
-  }
+
   footer {
     width:410px;/*pay attention to this for responsiveness*/
     margin:0 auto;
@@ -816,9 +801,7 @@ button {
     max-width:300px !important;
   }
   #content {
-    border:none;
-    max-width:400px;
-    width:400px !important;
+    border:none
   }
   .image-container {
     height:120px;
@@ -868,7 +851,7 @@ button {
   }
 
   #left-nav {
-    max-width:400px
+    width:100%
   }
   #search,#tabs {
     position:relative;
@@ -949,12 +932,6 @@ button {
   #header-right {
     width:350px;
   }
-  .container {
-    width:320px
-  }
-  #SilkCordNecklaces-div p {
-    max-width:350px !important;
-  }
   #footer {
     width:375px !important;
     height:200px
@@ -974,8 +951,8 @@ button {
     max-width:240px !important;
   }
   
-  #content h2,#content h3,#content {
-    width:320px !important;
+  #content h2,#content h3 {
+    width:350px
   }
   
 }
@@ -1015,7 +992,7 @@ button {
   }
 
   #left-nav {
-    max-width:350px
+    width:300px
   }
   #search,#tabs {
     position:relative;

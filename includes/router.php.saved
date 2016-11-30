@@ -3,15 +3,22 @@
     $topNav = topNav();
     $leftNav = leftNav();
     
-    if(array_key_exists(2,$uri)){
-      $meta = loadPagePHP($uri[1].'/'.$uri[2]);
+    if(array_key_exists(3,$uri)){
+      $meta = loadPagePHP($uri[3]);
+    } else if(array_key_exists(2,$uri)){
+      $meta = loadPagePHP($uri[2]);
     } else {
       $meta = loadPagePHP($uri[1]);
     }
-
+//~ echo $meta;
+    
+    //~ $menu = menu();
     if(is_array($meta)){
-      $title = $meta['title'];
-      $desc = $meta['description'];
+      if(array_key_exists('MetaTitle',$meta)){
+        $title = $meta['MetaTitle'];
+        $desc = $meta['MetaDescription'];
+        $keywords = $meta['MetaKeywords'];
+      }
       if(array_key_exists('heading',$meta)){
         $body = $meta['body'];
         $heading = '<h1>'.$meta['heading'].'</h1>';
@@ -26,7 +33,7 @@
     }
     
     if($uri[1] === 'ajax'){
-      include_once '../ajax/'.$uri[2].'.html';            
+      include_once '../ajax/'.md5($uri[2]).'.html';            
       exit;
     }
     
