@@ -15,6 +15,12 @@ p {
 
 #div {border-top:1px solid red}
 
+#backgrounds {
+  position:absolute;
+  top:9999px;
+  left:-99999px
+}
+
 #-div,#SilkCordNecklaces-div,p {
   width:800px
 }
@@ -41,7 +47,7 @@ h2 {
   color:#FFF
 }
 
-footer div a {
+footer div,footer div a {
   font-size:12px
 }
 
@@ -391,7 +397,8 @@ div .submenu {
   font-size:.8em;
   margin-left:30px;
   margin-bottom:100px;
-  padding:0
+  padding:0;
+  opacity:.95
 }
 
 #SilkCordNecklaces.container.body {
@@ -562,6 +569,13 @@ button {
    * */
 }
 
+#file-info {
+  text-align:right;
+  font-size:12px
+}
+#last-edit {
+  font-size:12px
+}
 @media  (max-width: 1024px) {
   .page-header {
     width:640px;
@@ -572,7 +586,7 @@ button {
   #SilkCordNecklaces.container.body {
     max-width:640px
   }
-  #content,.col-md-12 {
+  #content,.col-md-12,footer,#footer {
     display:block;
     width:800px !important;
   }
@@ -599,6 +613,7 @@ button {
   }
   #-div h1,.img-responsive,pre,#content ul li,#content ol li,#content {
     max-width:660px !important;
+    width:660px !important;
   }
 }
 @media(max-width:768px) {
@@ -665,7 +680,9 @@ button {
     display:block;
     width:700px !important;
   }
-
+  #footer {
+    width:650px !important;
+  }
   .detail-page {
     margin-left:-40px
   }
@@ -755,7 +772,7 @@ button {
   }
   
   #content {
-    width:700px
+    width:700px !important;
   }
 }
 
@@ -775,7 +792,9 @@ button {
     width:370px;
     left:40%;
   }
-  
+  #content h1,#content h2,#content h3,#content p, #content,footer,#footer {
+    width:600px !important;
+  }
   #header {
     width:100%
   }
@@ -865,6 +884,7 @@ button {
   }
   #main,#shadow {
     width:100%;
+    opacity:.95
   }
 
   #left-nav {
@@ -944,6 +964,12 @@ button {
     margin-left:-30px;
     font-size:20px
   }
+  #content h1,#content h2,#content h3,#content p, #content,#footer {
+    width:400px !important;
+  }
+  #file-info {
+    font-size:8px
+  }
 }
 @media(max-width:375px) {
   #header-right {
@@ -974,14 +1000,17 @@ button {
     max-width:240px !important;
   }
   
-  #content h2,#content h3,#content {
+  #content h1,#content h2,#content h3,#content p, #content,footer,#footer {
     width:320px !important;
+  }
+  #file-info {
+    text-align:left
   }
   
 }
 @media(max-width:320px) {
-  #content h2,#content h3 {
-    width:300px
+  #content h1,#content h2,#content h3,#content p, #content,footer,#footer {
+    width:300px !important;
   }
   #header-right {
     width:320px;

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Nov 28, 2016 at 12:24 PM
+-- Generation Time: Dec 01, 2016 at 11:33 PM
 -- Server version: 5.5.44-0ubuntu0.14.04.1
 -- PHP Version: 5.5.9-1ubuntu4.11
 
@@ -42,46 +42,6 @@ CREATE TABLE IF NOT EXISTS `categories` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `customers`
---
-
-CREATE TABLE IF NOT EXISTS `customers` (
-  `ID` smallint(5) unsigned NOT NULL,
-  `BusinessName` varchar(48) NOT NULL DEFAULT '',
-  `FirstName` varchar(48) NOT NULL DEFAULT '',
-  `LastName` varchar(48) NOT NULL DEFAULT '',
-  `Email` varchar(64) NOT NULL DEFAULT '',
-  `Phone` varchar(16) NOT NULL DEFAULT '',
-  `BillAddress1` varchar(48) NOT NULL DEFAULT '',
-  `BillAddress2` varchar(48) NOT NULL DEFAULT '',
-  `BillCity` varchar(32) NOT NULL DEFAULT '',
-  `BillState` char(2) NOT NULL DEFAULT '',
-  `BillStateOther` varchar(32) NOT NULL DEFAULT '',
-  `BillPostal` varchar(16) NOT NULL DEFAULT '',
-  `BillCountryCode` char(2) NOT NULL DEFAULT '',
-  `ShipAddress1` varchar(48) NOT NULL DEFAULT '',
-  `ShipAddress2` varchar(48) NOT NULL DEFAULT '',
-  `ShipCity` varchar(32) NOT NULL DEFAULT '',
-  `ShipState` char(2) NOT NULL DEFAULT '',
-  `ShipStateOther` varchar(32) NOT NULL DEFAULT '',
-  `ShipPostal` varchar(16) NOT NULL DEFAULT '',
-  `ShipCountryCode` char(2) NOT NULL DEFAULT '',
-  `Timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `salt` varchar(32) NOT NULL,
-  `password` varchar(40) NOT NULL,
-  `salesperson` varchar(32) NOT NULL
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `customers`
---
-
-INSERT INTO `customers` (`ID`, `BusinessName`, `FirstName`, `LastName`, `Email`, `Phone`, `BillAddress1`, `BillAddress2`, `BillCity`, `BillState`, `BillStateOther`, `BillPostal`, `BillCountryCode`, `ShipAddress1`, `ShipAddress2`, `ShipCity`, `ShipState`, `ShipStateOther`, `ShipPostal`, `ShipCountryCode`, `Timestamp`, `salt`, `password`, `salesperson`) VALUES
-(1, 'phpMydev', 'Richard', 'Whitney', 'richard@whitneys.co', '602-334-7771', '5714 E St John Rd', '', 'Scottsdale', 'AZ', '', '85254', 'us', '5714 E St John Rd', '', 'Scottsdale', 'AZ', '', '85254', 'us', '2016-10-11 18:57:03', 'fXZlE4nAgAZ3eZED93WUKicDHdLTZvIG', '87269166b203a74f749b158c884e2c221c8f2552', '');
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `logs`
 --
 
@@ -91,14 +51,7 @@ CREATE TABLE IF NOT EXISTS `logs` (
   `ref` varchar(300) NOT NULL,
   `ua` text NOT NULL,
   `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `logs`
---
-
-INSERT INTO `logs` (`id`, `ip`, `ref`, `ua`, `date`) VALUES
-(1, '192.168.1.17', '/', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36/', '0000-00-00 00:00:00');
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -198,7 +151,7 @@ CREATE TABLE IF NOT EXISTS `users` (
 --
 
 INSERT INTO `users` (`id`, `hash`, `first`, `last`, `username`, `password`, `email`, `first_login`, `last_login`, `created`, `admin`, `viewonly`, `authToken`, `salt`) VALUES
-(1, 'kPmkuxWer9ZPLBUa', '', '', '', '236d1fa986de5ad95736cd4df844161908149083', 'rwhitney@phpmydev.com', '0000-00-00 00:00:00', '2016-11-16 00:04:33', '2016-11-15 04:54:10', 1, '', 'MBjmiAWSfXHe6xaY7ct7kaaYYEc3SZHncinbsyUp', 'desSJtMVbBMxkk1DMX1uuRfxRxT80kJ8tbFzlsvY');
+(1, 'kPmkuxWer9ZPLBUa', 'Richard', 'Whitney', '', '236d1fa986de5ad95736cd4df844161908149083', 'rwhitney@phpmydev.com', '0000-00-00 00:00:00', '2016-11-16 00:04:33', '2016-11-15 04:54:10', 1, '', 'MBjmiAWSfXHe6xaY7ct7kaaYYEc3SZHncinbsyUp', 'desSJtMVbBMxkk1DMX1uuRfxRxT80kJ8tbFzlsvY');
 
 --
 -- Indexes for dumped tables
@@ -209,12 +162,6 @@ INSERT INTO `users` (`id`, `hash`, `first`, `last`, `username`, `password`, `ema
 --
 ALTER TABLE `categories`
   ADD PRIMARY KEY (`ID`);
-
---
--- Indexes for table `customers`
---
-ALTER TABLE `customers`
-  ADD PRIMARY KEY (`ID`), ADD UNIQUE KEY `salt` (`salt`);
 
 --
 -- Indexes for table `logs`
@@ -256,15 +203,10 @@ ALTER TABLE `users`
 ALTER TABLE `categories`
   MODIFY `ID` smallint(5) unsigned NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT for table `customers`
---
-ALTER TABLE `customers`
-  MODIFY `ID` smallint(5) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
---
 -- AUTO_INCREMENT for table `logs`
 --
 ALTER TABLE `logs`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `pages`
 --

@@ -8,7 +8,7 @@ http://www.google.com/schemas/sitemap/0.84/sitemap.xsd">';
 
 $sql = "SELECT sc.url as subcat,c.url as category,p.*, 
         IF( YEAR( p.lastEdit ) >0, p.lastEdit, 0 ) AS lastEdit
-        FROM pages p, tblProductSubcategories sc, tblProductCategories c WHERE p.title != '' 
+        FROM pages p, subcategories sc, categories c WHERE p.title != '' 
         AND sc.categoryid = c.id
         GROUP BY p.link
         ORDER BY id DESC";

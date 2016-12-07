@@ -12,3 +12,9 @@ New in version 1.1e Release Date November 29, 2016
 -- added disqusurl = '' to vars.js in case you set up disqus on your site
 -- added support for editing with single quotes in the text
 -- expunged unnecessary files from ajax folder
+
+New in version 1.2 Rel;ease Date December 7, 2016
+-- added missing login.html to ajax folder - couldn't login!
+-- fixed some responsive issues - widths of elements
+-- added Lines showing when files were updated, including the S-P-A pages dynamically edited
+-- fixed footer col-lg-6 should have been col-lg-4

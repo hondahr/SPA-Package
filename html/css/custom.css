@@ -140,6 +140,10 @@ h1,h2,h3,h4 {
   border-radius:0 0 5px 5px
 }
 
+footer div,footer div a {
+	color:#fff
+}
+
 #left-nav li {
   font-family:"Atma", sans-serif;
 }

@@ -15,7 +15,7 @@ function loadPage(){
 }
 
 function loadPagePHP($page){
-    $sql = "SELECT title,description,body,heading
+    $sql = "SELECT title,description,body,heading,lastEdit
           FROM pages WHERE link = '".clean($page)."'
           ORDER BY id DESC LIMIT 1";
     //~ return $sql;

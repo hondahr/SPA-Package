@@ -112,10 +112,9 @@ function loadPage($data){
     } else {
       //~ alert(response.title);
       $('head').find('title').text(response.title);
-      heading = '<div class="page-header"><h1>'+response.heading+'</h1></div>';
+      heading = '<div class="page-header"><h1>'+response.heading+'</h1><span id="last-edit">Last updated '+response.lastEdit+'</span></div>';
       body = response.body;
     }
-
     $('#search-results').empty();
     if($data === ''){
       $('head').find('title').text(response.title);

@@ -38,8 +38,8 @@ if(dev() === true){// development
   /* Production Database Connection info and Path*/
   /* Define db vars */
   $host = "localhost";
-  $user = "";
-  $pass = "";
+  $user = "your db username";
+  $pass = "your db password";
   $db   = "dbname";
   /* end define db vars */
 }

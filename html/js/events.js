@@ -5,6 +5,9 @@ if(enableBackgrounds === true){
     dataType:'json',
     data:{}
   }).success(function(bg){
+    $.each(bg,function(o,background){
+      $('#backgrounds').append('<img src="/backgrounds/'+background+'">');
+    });
     setInterval(function(){
       var len = bg.length;
       var i = rand(0,len-1);
