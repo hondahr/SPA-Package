@@ -1,4 +1,11 @@
 function fub(str){// fub = false,undefined or blank
+  /*
+   * return anything but true
+      if(str !== fub(str)){
+        it's true or anything 
+        other than the following
+      }
+  * */
   if(str === undefined){
     return undefined;
   } else if(str === 'undefined'){
@@ -13,6 +20,8 @@ function fub(str){// fub = false,undefined or blank
     return null;
   }
 }
+
+
 
 function authenticate(token){
   //~ alert(token);
@@ -105,10 +114,14 @@ function loadPage($data){
     disqus($slashdata);
     
     //~ alert(response);
-    //~ console.log(response);
+    console.log(response);
     if(response === null){//possible details page
-      $('head').find('title').html($('.page-header h1').html());
-
+      //~ $('head').find('title').html($('.page-header h1').html());
+      if(localStorage.getItem('admin') === fub(localStorage.getItem('admin'))){
+        heading = '<h1>Page not found</h1>';
+        $('#content').html(structure+'<div class="container body">'+heading+'</div>').show(200);
+        return;
+      }
     } else {
       //~ alert(response.title);
       $('head').find('title').text(response.title);

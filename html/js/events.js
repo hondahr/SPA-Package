@@ -73,7 +73,8 @@ play();
 //
 //
 $(document).on('click','a.menu',function(evt){
-  //alert('clicked');//works
+  //~ alert('clicked');//works
+  // prepareAnchors working for even dynamic links in SPA pages
   if(enableAudible === true){
     $('#clickmp3').trigger('click');
   }

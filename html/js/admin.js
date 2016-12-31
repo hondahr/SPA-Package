@@ -394,7 +394,7 @@
     $('#admin-add-edit-page').css({'margin-top':'100px'}).show();
     var body = '';
     if($id === 'edit-page'){
-      $('#add-pages-name').val(page);
+      $('#add-pages-name').val(page);//change page to point to current spa nav?
       var heading = $('.page-header > h1').text();
       $('#add-pages-heading').val(heading);
       tinymceinit();
@@ -477,7 +477,8 @@
         plugins: 'textcolor colorpicker advlist autolink lists link image charmap print preview anchor searchreplace visualblocks code fullscreen insertdatetime media table paste code',
         image_advtab: true,
         width:'600px',
-        height:'400px'
+        height:'400px',
+        relative_urls : false
         //~ content_css : "/css/main.css",
     });
     var ed = tinymce.activeEditor;

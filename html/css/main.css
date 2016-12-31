@@ -21,7 +21,7 @@ p {
   left:-99999px
 }
 
-#-div,#SilkCordNecklaces-div,p {
+#-div,p {
   width:800px
 }
 
@@ -577,18 +577,17 @@ button {
   font-size:12px
 }
 @media  (max-width: 1024px) {
+
   .page-header {
     width:640px;
   }
-  #-div,#SilkCordNecklaces-div,p {
+  #-div,p {
   	width:640px;
   }
-  #SilkCordNecklaces.container.body {
-    max-width:640px
-  }
-  #content,.col-md-12,footer,#footer {
+  
+  #content,#content h1,#content h2,#content h3,.col-md-12,footer,#footer {
     display:block;
-    width:800px !important;
+    width:700px !important;
   }
   
   #header {

@@ -13,8 +13,13 @@ New in version 1.1e Release Date November 29, 2016
 -- added support for editing with single quotes in the text
 -- expunged unnecessary files from ajax folder
 
-New in version 1.2 Rel;ease Date December 7, 2016
+New in version 1.2 Release Date December 7, 2016
 -- added missing login.html to ajax folder - couldn't login!
 -- fixed some responsive issues - widths of elements
 -- added Lines showing when files were updated, including the S-P-A pages dynamically edited
 -- fixed footer col-lg-6 should have been col-lg-4
+-- allowing for absolute urls in tinymce ex. /instructions/configure with relative_urls : false
+-- fixed backslash erasure on save css file
+
+New in version 1.2a
+-- added 404 not found while allowing for the creation of new pages by admin

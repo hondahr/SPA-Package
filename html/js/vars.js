@@ -25,7 +25,7 @@ date = date.toLocaleTimeString("en-us", options);
 var enableDate = true;//change to anything besides true to disable;
 var enableBackgrounds = true;//change to anything besides true to disable;
 var enableAudible = true;
-if(w < 1280){
+if(w < 1281){
   enableBackgrounds = false;
 }
 var disqusurl = 'xend-net';
