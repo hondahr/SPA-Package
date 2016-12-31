@@ -366,7 +366,7 @@ function saveCSS(){
   $file = $_SERVER['DOCUMENT_ROOT'].'/css/custom.css';
   if(is_writable($file)){
     $handle = fopen($file,'w');
-    fwrite($handle,stripslashes($_POST['css']));
+    fwrite($handle,stripslashes(addslashes($_POST['css'])));
     fclose($handle);
   }
   return $_POST['css'];
